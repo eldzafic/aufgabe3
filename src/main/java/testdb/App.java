@@ -26,11 +26,12 @@ public class App {
 
  */
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        //insertInvoice(verbindungAufbauen(), date, "beschreibung!", 12345.1, true);
+        //insertInvoice(verbindungAufbauen(), date, "beschreibung!", 20, true);
 
         verbindungAufbauen();
         //showInvoices();
-        insertInvoice(date, "Beschreibung", 10.0, (byte) 1);
+        //insertInvoice(date, "Beschreibung", 10.0, (byte) 1);
+        deleteInvoice(14);
 
     }
 
@@ -88,7 +89,14 @@ public class App {
 
     public static void deleteInvoice(int id)
     {
-
+        try {
+            Statement delstate = con.createStatement();
+            String sql = "delete from invoice where id = " +id;
+            delstate.executeUpdate(sql);
+            System.out.println("Eintrag mit der ID " + id + " wurde geloescht!");
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public Connection getCon() {
