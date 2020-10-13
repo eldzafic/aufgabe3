@@ -1,6 +1,7 @@
 package testdb;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -15,14 +16,31 @@ public class App {
 
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 
-        verbindungAufbauen();
+        //************************************************************Aufgabe 3******************************************************************
+        //verbindungAufbauen();
         //showInvoices();
         //insertInvoice(date, "Beschreibung1234", 5100.0, (byte) 0);
         //deleteInvoice(15);
         //updateInvoice(16, date, "abcd", 9999.0, true);
 
+        //************************************************************Aufgabe 4******************************************************************
+        /*
+        InvoiceDao dao = new InvoiceDaoArrayListImpl();
+
+        /*ArrayList<Invoice> liste = dao.showAllInvoices();
+        for(Invoice i : liste)
+        {
+            System.out.println(i);
+        }
 
 
+
+        dao.deleteInvoice(1);
+
+        Invoice i2 = new Invoice(6, date, "Beschreibung neu", 9999.0, true);
+        dao.insertInvoice(i2);
+
+        */
     }
 
     public static void verbindungAufbauen() {
