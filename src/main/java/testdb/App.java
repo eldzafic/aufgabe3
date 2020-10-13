@@ -12,26 +12,16 @@ public class App {
     private static Connection con;
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-/*        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test", "root", "");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select id, name, nachname from benutzer");
-            while (rs.next())
-                System.out.println(rs.getInt("id") + "  " + rs.getString("name") + " " + rs.getString("nachname"));
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
 
- */
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        //insertInvoice(verbindungAufbauen(), date, "beschreibung!", 20, true);
 
         verbindungAufbauen();
         //showInvoices();
-        //insertInvoice(date, "Beschreibung", 10.0, (byte) 1);
-        deleteInvoice(14);
+        //insertInvoice(date, "Beschreibung1234", 5100.0, (byte) 0);
+        //deleteInvoice(15);
+        //updateInvoice(16, date, "abcd", 9999.0, true);
+
+
 
     }
 
@@ -73,9 +63,12 @@ public class App {
     public static void insertInvoice(Date date, String description, double value, Byte paid)
     {
         try {
-            Statement mystmt = con.createStatement();
-            String sql = "insert into invoice " + " (idate, idescription, ivalue, ipaid) " + " values ('"+date+"', '"+description+"', '"+value+"', '"+paid+"')";
-            mystmt.executeUpdate(sql);
+            PreparedStatement myStmt = con.prepareStatement("insert into invoice (idate, idescription, ivalue, ipaid) values (?,?,?,?)");
+            myStmt.setDate(1, date);
+            myStmt.setString(2, description);
+            myStmt.setDouble(3, value);
+            myStmt.setByte(4, paid);
+            myStmt.executeUpdate();
             System.out.println("Insert erfolgreich!");
         }catch (Exception e) {
             System.out.println(e);
@@ -84,15 +77,27 @@ public class App {
 
     public static void updateInvoice(int id, Date date, String description, double value, Boolean paid)
     {
+       try{
 
+           PreparedStatement myStmt = con.prepareStatement("update invoice set idate = ?, idescription = ?, ivalue = ?, ipaid = ? where id = ?");
+           myStmt.setDate(1, date);
+           myStmt.setString(2, description);
+           myStmt.setDouble(3, value);
+           myStmt.setBoolean(4, paid);
+           myStmt.setInt(5, id);
+           myStmt.executeUpdate();
+           System.out.println("Eintrag für ID "+id +" wurde geaendert!" );
+       } catch (Exception e){
+            System.out.println("Update fehlgeschlagen!");
+       }
     }
 
     public static void deleteInvoice(int id)
     {
         try {
-            Statement delstate = con.createStatement();
-            String sql = "delete from invoice where id = " +id;
-            delstate.executeUpdate(sql);
+            PreparedStatement myStmt = con.prepareStatement("delete from invoice where id = ?");
+            myStmt.setInt(1, id);
+            myStmt.executeUpdate();
             System.out.println("Eintrag mit der ID " + id + " wurde geloescht!");
         }catch (Exception e){
             System.out.println(e);
