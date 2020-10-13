@@ -25,11 +25,12 @@ public class App {
         }
 
  */
-        //java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         //insertInvoice(verbindungAufbauen(), date, "beschreibung!", 12345.1, true);
 
         verbindungAufbauen();
-        showInvoices();
+        //showInvoices();
+        insertInvoice(date, "Beschreibung", 10.0, (byte) 1);
 
     }
 
@@ -67,23 +68,19 @@ public class App {
             System.out.println(e);
         }
     }
-/*
-    public static void insertInvoice(Connection con, Date date, String description, double value, Boolean paid)
+
+    public static void insertInvoice(Date date, String description, double value, Byte paid)
     {
         try {
-
-
             Statement mystmt = con.createStatement();
-            String sql = "insert into invoice "
-                    + " (idate, idescription, ivalue, ipaid) "
-                    + " values (date, description, value, paid)";
+            String sql = "insert into invoice " + " (idate, idescription, ivalue, ipaid) " + " values ('"+date+"', '"+description+"', '"+value+"', '"+paid+"')";
             mystmt.executeUpdate(sql);
             System.out.println("Insert erfolgreich!");
         }catch (Exception e) {
             System.out.println(e);
         }
     }
-*/
+
     public static void updateInvoice(int id, Date date, String description, double value, Boolean paid)
     {
 
