@@ -1,5 +1,7 @@
 package testdb;
 
+
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,20 +29,39 @@ public class App {
         /*
         InvoiceDao dao = new InvoiceDaoArrayListImpl();
 
-        /*ArrayList<Invoice> liste = dao.showAllInvoices();
+        ArrayList<Invoice> liste = dao.showAllInvoices();
         for(Invoice i : liste)
         {
             System.out.println(i);
         }
 
+        dao.updateInvoice(1, new Invoice(2, date, "Beschreinung neu", 500.0, true));
+
+        dao.deleteInvoice(3);
+
+        dao.insertInvoice(new Invoice(6, date, "Beschreibung neu", 9999.0, true));
 
 
-        dao.deleteInvoice(1);
+        for(Invoice i : liste)
+        {
+            System.out.println(i);
+        }
+         */
 
-        Invoice i2 = new Invoice(6, date, "Beschreibung neu", 9999.0, true);
-        dao.insertInvoice(i2);
+        //************************************************************Aufgabe 5******************************************************************
+        /*
+        InvoiceDao dao = new SQLInvoiceDaoIImpl();
+        dao.showAllInvoices();
 
-        */
+        dao.insertInvoiceSQL(date, "Beschreinung SQL", 433.0, (byte) 1);
+        dao.insertInvoiceSQL(date, "Beschreinung SQL", 533.0, (byte) 1);
+
+        dao.updateInvoiceSQL(17, date, "Beschreibung update", 500.0, true);
+
+        dao.deleteInvoiceSQL(18);
+
+        dao.insertInvoiceSQL(date, "Beschreinung SQL", 333.0, (byte) 1);
+         */
     }
 
     public static void verbindungAufbauen() {

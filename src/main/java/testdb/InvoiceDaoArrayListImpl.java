@@ -1,8 +1,8 @@
 package testdb;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class InvoiceDaoArrayListImpl implements InvoiceDao{
 
@@ -21,9 +21,9 @@ public class InvoiceDaoArrayListImpl implements InvoiceDao{
         return this.invoices;
     }
 
-    //public void updateStudent(int id, Date date, String description, double value, boolean paid){
-    //    invoices.set(1, "djd");
-    //}
+    public void updateInvoice(int id, Invoice i){
+        this.invoices.set(id, i);
+    }
 
     public void deleteInvoice(int id){
         for (Invoice i2 : this.invoices)
@@ -41,4 +41,25 @@ public class InvoiceDaoArrayListImpl implements InvoiceDao{
             this.invoices.add(i2);
         }
     }
+
+    @Override
+    public void showInvoicesSQL() {
+
+    }
+
+    @Override
+    public void insertInvoiceSQL(Date date, String description, double value, Byte paid) {
+
+    }
+
+    @Override
+    public void updateInvoiceSQL(int id, Date date, String description, double value, Boolean paid) {
+
+    }
+
+    @Override
+    public void deleteInvoiceSQL(int id) {
+
+    }
+
 }
